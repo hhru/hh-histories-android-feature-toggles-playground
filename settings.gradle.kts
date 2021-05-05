@@ -17,6 +17,9 @@ pluginManagement {
         eachPlugin {
             val pluginId = requested.id.id
             when {
+                pluginId == "com.joom.colonist.android" ->
+                    useModule("com.joom.colonist:colonist-gradle-plugin:0.1.0-alpha9")
+
                 pluginId.startsWith("com.android.") ->
                     useModule("com.android.tools.build:gradle:${androidGradlePluginVersion.get()}")
 

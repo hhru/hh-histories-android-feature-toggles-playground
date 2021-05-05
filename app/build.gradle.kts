@@ -3,6 +3,7 @@ import com.android.build.gradle.internal.dsl.SigningConfig
 plugins {
     id("convention.kotlin-android-app")
     kotlin("kapt")
+    id("com.joom.colonist.android")
 }
 
 android {

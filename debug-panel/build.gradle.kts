@@ -28,5 +28,6 @@ dependencies {
 
     // Debug
     implementation(Libs.debug.processPhoenix)
+    compileOnly(Libs.debug.colonistCore)
     // endregion
 }

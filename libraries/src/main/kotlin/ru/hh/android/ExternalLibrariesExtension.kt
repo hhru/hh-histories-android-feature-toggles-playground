@@ -86,6 +86,7 @@ abstract class ExternalLibrariesExtension @Inject constructor(private val provid
 
     object DebugLibraries {
         const val processPhoenix = "com.jakewharton:process-phoenix:2.0.0"
+        const val colonistCore = "com.joom.colonist:colonist-core:0.1.0-alpha9"
     }
 
     @Suppress("UnstableApiUsage")

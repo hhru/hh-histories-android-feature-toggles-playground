@@ -36,7 +36,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "FeatureTogglesPlayground"
+rootProject.name = "android-feature-toggles-playground"
 
 // Included builds
 includeBuild("libraries")
@@ -54,5 +54,6 @@ include(":features:second")
 include(":features:third")
 
 // Core modules
+include(":core:di")
 include(":core:design-system")
 include(":core:experiments")

@@ -38,6 +38,7 @@
             <option value="$PROJECT_DIR$/build-logic/testing-convention" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core/design-system" />
+            <option value="$PROJECT_DIR$/core/di" />
             <option value="$PROJECT_DIR$/core/experiments" />
             <option value="$PROJECT_DIR$/debug-panel" />
             <option value="$PROJECT_DIR$/features" />

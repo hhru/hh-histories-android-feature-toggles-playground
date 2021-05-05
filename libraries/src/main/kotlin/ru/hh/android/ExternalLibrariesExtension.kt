@@ -35,6 +35,7 @@ abstract class ExternalLibrariesExtension @Inject constructor(private val provid
     val build = BuildLibraries
     val toothpick = ToothpickLibraries
     val test = TestsLibraries
+    val debug = DebugLibraries
 
 
     object AndroidXLibraries {
@@ -42,6 +43,7 @@ abstract class ExternalLibrariesExtension @Inject constructor(private val provid
         const val appCompat = "androidx.appcompat:appcompat:1.2.0"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
         const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.3"
+        const val materialComponents = "com.google.android.material:material:1.3.0"
     }
 
     object JetpackLibraries {
@@ -80,6 +82,10 @@ abstract class ExternalLibrariesExtension @Inject constructor(private val provid
         const val junitPlatformLauncher = "org.junit.platform:junit-platform-launcher:${Versions.junit5Platform}"
         const val junit5ParametrizedTestsApi = "org.junit.jupiter:junit-jupiter-params:${Versions.junit5}"
         const val junit5VintageEngine = "org.junit.vintage:junit-vintage-engine:${Versions.junit5}"
+    }
+
+    object DebugLibraries {
+        const val processPhoenix = "com.jakewharton:process-phoenix:2.0.0"
     }
 
     @Suppress("UnstableApiUsage")

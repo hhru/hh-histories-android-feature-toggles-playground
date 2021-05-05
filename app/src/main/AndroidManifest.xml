@@ -3,19 +3,22 @@
     package="ru.hh.ftplayground">
 
     <application
+        android:name=".FTPApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Hhhistoriesandroidfeaturetogglesplayground">
-        <activity android:name=".MainActivity">
+        android:theme="@style/Theme.FeatureTogglesPlayground">
+        <activity android:name=".RootActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name="ru.hh.android.debug_panel.ui.DebugPanelActivity"/>
     </application>
 
 </manifest>

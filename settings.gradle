@@ -1,2 +1,0 @@
-include ':app'
-rootProject.name = "hh-histories-android-feature-toggles-playground"

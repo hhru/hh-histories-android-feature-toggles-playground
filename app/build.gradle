@@ -1,16 +1,14 @@
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
+    id("convention.kotlin-android-app")
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    buildFeatures {
+        buildConfig = true
+    }
 
     defaultConfig {
-        applicationId "ru.hh.ftplayground"
-        minSdkVersion 21
-        targetSdkVersion 30
+        applicationId "ru.hh.feature_toggles_playground"
         versionCode 1
         versionName "1.0"
 
@@ -19,27 +17,37 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
     }
 }
 
 dependencies {
+    // Core
+    implementation(project(":core:design-system"))
+    implementation(project(":core:experiments"))
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    // Features
+    implementation(project(":features:first"))
+    implementation(project(":features:second"))
+    implementation(project(":features:third"))
+
+    // External dependencies
+    implementation(Libs.jetpack.navigationComponentFragment)
+    implementation(Libs.jetpack.navigationComponentFragmentKtx)
+    implementation(Libs.jetpack.lifecycleViewModel)
+    implementation(Libs.jetpack.lifecycleLiveData)
+
+    implementation(Libs.kotlinStdlib)
+
+    implementation(Libs.androidX.coreKtx)
+    implementation(Libs.androidX.fragmentKtx)
+    implementation(Libs.androidX.appCompat)
+    implementation(Libs.androidX.constraintLayout)
+
+    implementation(Libs.toothpick.core)
+    implementation(Libs.toothpick.ktp)
+
     implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }

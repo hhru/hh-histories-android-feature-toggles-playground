@@ -1,8 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/libraries" name="libraries">
+                <projects>
+                  <project path="$PROJECT_DIR$/libraries" />
+                </projects>
+              </build>
+              <build path="$PROJECT_DIR$/build-logic" name="build-logic">
+                <projects>
+                  <project path="$PROJECT_DIR$/build-logic" />
+                  <project path="$PROJECT_DIR$/build-logic/android-convention" />
+                  <project path="$PROJECT_DIR$/build-logic/kotlin-convention" />
+                  <project path="$PROJECT_DIR$/build-logic/testing-convention" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
         <option name="testRunner" value="PLATFORM" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -12,6 +32,19 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/build-logic" />
+            <option value="$PROJECT_DIR$/build-logic/android-convention" />
+            <option value="$PROJECT_DIR$/build-logic/kotlin-convention" />
+            <option value="$PROJECT_DIR$/build-logic/testing-convention" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core/design-system" />
+            <option value="$PROJECT_DIR$/core/experiments" />
+            <option value="$PROJECT_DIR$/debug-panel" />
+            <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/first" />
+            <option value="$PROJECT_DIR$/features/second" />
+            <option value="$PROJECT_DIR$/features/third" />
+            <option value="$PROJECT_DIR$/libraries" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/MainFragment"
-        android:name="ru.hh.ftplayground.MainFragment"
+        android:name="ru.hh.ftplayground.ui.main.MainFragment"
         tools:layout="@layout/fragment_main">
 
     </fragment>

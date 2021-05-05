@@ -1,15 +1,16 @@
 plugins {
     id("convention.kotlin-android-library")
     kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 dependencies {
-    // External libraries
+    // region External libraries
     implementation(Libs.kotlinStdlib)
     implementation(Libs.jetpack.lifecycleLiveData)
 
-    // DI
-    implementation(Libs.toothpick.core)
-    implementation(Libs.toothpick.ktp)
-    kapt(Libs.toothpick.compiler)
+    // Hilt
+    implementation(Libs.jetpack.hiltAndroid)
+    kapt(Libs.jetpack.hiltCompiler)
+    // endregion
 }

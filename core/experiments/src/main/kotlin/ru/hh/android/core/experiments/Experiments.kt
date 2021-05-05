@@ -2,21 +2,26 @@ package ru.hh.android.core.experiments
 
 import ru.hh.android.core.experiments.domain.ExperimentsInteractor
 import ru.hh.android.core.experiments.models.Experiment
+import javax.inject.Inject
 
 
-object Experiments {
+// TODO [hilt-dagger-problems] We need assurance of instantiation 'Experiments' class before all use cases.
+class Experiments @Inject constructor(
+    private val experimentsInteractor: ExperimentsInteractor
+) {
 
-    private var experimentsInteractor: ExperimentsInteractor? = null
-
-
-    fun init(experimentsInteractor: ExperimentsInteractor) {
-        this.experimentsInteractor = experimentsInteractor
+    init {
+        // TODO [hilt-dagger-problems] Dagger can't inject into Kotlin's objects.
+        staticExperimentsInteractor = this.experimentsInteractor
     }
 
 
-    fun isUserAffected(experiment: Experiment): Boolean {
-        return experimentsInteractor?.isUserAffected(experimentKey = experiment.key)
-            ?: false
+    companion object {
+        private lateinit var staticExperimentsInteractor: ExperimentsInteractor
+
+        fun isUserAffected(experiment: Experiment): Boolean {
+            return staticExperimentsInteractor.isUserAffected(experimentKey = experiment.key)
+        }
     }
 
 }

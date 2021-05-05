@@ -3,11 +3,10 @@ package ru.hh.android.core.experiments.domain
 import android.content.Context
 import android.content.SharedPreferences
 import ru.hh.android.core.experiments.ExperimentsConstants
-import toothpick.InjectConstructor
+import javax.inject.Inject
 
 
-@InjectConstructor
-class ExperimentsInteractor(
+class ExperimentsInteractor @Inject constructor(
     applicationContext: Context
 ) {
     private val experimentsPrefs: SharedPreferences by lazy {

@@ -1,4 +1,4 @@
-package ru.hh.ftplayground
+package ru.hh.ftplayground.ui.main
 
 import android.os.Bundle
 import android.view.View
@@ -6,6 +6,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import ru.hh.ftplayground.R
 import ru.hh.ftplayground.extensions.setupWithNavController
 
 

@@ -1,15 +1,19 @@
-package ru.hh.feature_toggles_playground.di
+package ru.hh.ftplayground.di
 
-import android.app.Application
 import android.content.Context
-import toothpick.config.Module
-import toothpick.ktp.binding.bind
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 
 
-internal class RootModule(application: Application) : Module() {
+@dagger.Module
+@InstallIn(SingletonComponent::class)
+internal class RootModule {
 
-    init {
-        bind<Context>().toInstance(application)
+    @Provides
+    fun provideApplicationContext(@ApplicationContext applicationContext: Context): Context {
+        return applicationContext
     }
 
 }

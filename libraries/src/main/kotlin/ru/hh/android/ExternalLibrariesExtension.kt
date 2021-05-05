@@ -36,7 +36,6 @@ abstract class ExternalLibrariesExtension @Inject constructor(private val provid
         hiltVersion = hiltVersion
     )
     val build = BuildLibraries
-    val toothpick = ToothpickLibraries
     val test = TestsLibraries
     val debug = DebugLibraries
 
@@ -70,17 +69,6 @@ abstract class ExternalLibrariesExtension @Inject constructor(private val provid
         private const val jdkDesugaringVersion = "1.0.9"
 
         const val jdkDesugaring = "com.android.tools:desugar_jdk_libs:${jdkDesugaringVersion}"
-    }
-
-    object ToothpickLibraries {
-
-        private const val toothpickVersion = "3.1.0"
-
-        const val core = "com.github.stephanenicolas.toothpick:ktp:$toothpickVersion"
-        const val api = "com.github.stephanenicolas.toothpick:toothpick:$toothpickVersion"
-        const val compiler = "com.github.stephanenicolas.toothpick:toothpick-compiler:$toothpickVersion"
-        const val ktp = "com.github.stephanenicolas.toothpick:ktp:$toothpickVersion"
-        const val testing = "com.github.stephanenicolas.toothpick:toothpick-testing:$toothpickVersion"
     }
 
     object TestsLibraries {

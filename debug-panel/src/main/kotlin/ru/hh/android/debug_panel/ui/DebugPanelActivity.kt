@@ -2,25 +2,18 @@ package ru.hh.android.debug_panel.ui
 
 import android.os.Bundle
 import android.widget.Button
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ru.hh.android.core.di.ScopeNames
+import dagger.hilt.android.AndroidEntryPoint
 import ru.hh.android.debug_panel.R
-import ru.hh.android.debug_panel.di.DebugPanelModule
-import toothpick.Toothpick
-import javax.inject.Inject
 
 
+@AndroidEntryPoint
 class DebugPanelActivity : AppCompatActivity(R.layout.activity_debug_panel) {
 
-    private companion object {
-        private const val SCOPE_NAME = "debug_panel"
-    }
-
-
-    @Inject
-    internal lateinit var viewModel: DebugPanelViewModel
+    private val viewModel by viewModels<DebugPanelViewModel>()
 
     private val recyclerAdapter by lazy {
         ExperimentsAdapter(
@@ -31,12 +24,6 @@ class DebugPanelActivity : AppCompatActivity(R.layout.activity_debug_panel) {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val scope = Toothpick.openScopes(ScopeNames.APP_SCOPE, SCOPE_NAME)
-        scope.installModules(
-            DebugPanelModule()
-        )
-        scope.inject(this)
-
         super.onCreate(savedInstanceState)
 
         setupRecyclerView()

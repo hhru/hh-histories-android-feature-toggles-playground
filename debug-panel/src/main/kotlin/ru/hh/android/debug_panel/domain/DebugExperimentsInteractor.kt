@@ -3,13 +3,12 @@ package ru.hh.android.debug_panel.domain
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
-import ru.hh.android.core.experiments.models.ExperimentModel
 import ru.hh.android.core.experiments.ExperimentsConstants
-import toothpick.InjectConstructor
+import ru.hh.android.core.experiments.models.ExperimentModel
+import javax.inject.Inject
 
 
-@InjectConstructor
-internal class DebugExperimentsInteractor(
+internal class DebugExperimentsInteractor @Inject constructor(
     applicationContext: Context,
 ) {
 

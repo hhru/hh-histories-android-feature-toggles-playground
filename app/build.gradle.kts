@@ -23,10 +23,12 @@ android {
         named("release") {
             isMinifyEnabled = true
 
-            setProguardFiles(listOf(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            ))
+            setProguardFiles(
+                listOf(
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro"
+                )
+            )
 
             signingConfig = SigningConfig("release").apply {
                 storeFile(rootProject.rootDir.resolve("debug_key.keystore"))
@@ -67,11 +69,6 @@ dependencies {
     implementation(Libs.androidX.appCompat)
     implementation(Libs.androidX.constraintLayout)
     implementation(Libs.androidX.materialComponents)
-
-    // Toothpick
-    implementation(Libs.toothpick.core)
-    implementation(Libs.toothpick.ktp)
-    kapt(Libs.toothpick.compiler)
 
     // Hilt
     implementation(Libs.jetpack.hiltAndroid)

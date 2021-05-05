@@ -1,6 +1,7 @@
 plugins {
     id("convention.kotlin-android-library")
     kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 dependencies {
@@ -21,10 +22,9 @@ dependencies {
     implementation(Libs.jetpack.lifecycleViewModel)
     implementation(Libs.jetpack.lifecycleLiveData)
 
-    // DI
-    implementation(Libs.toothpick.core)
-    implementation(Libs.toothpick.ktp)
-    kapt(Libs.toothpick.compiler)
+    // Hilt
+    implementation(Libs.jetpack.hiltAndroid)
+    kapt(Libs.jetpack.hiltCompiler)
 
     // Debug
     implementation(Libs.debug.processPhoenix)

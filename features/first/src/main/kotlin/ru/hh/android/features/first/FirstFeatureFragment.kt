@@ -4,32 +4,15 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import ru.hh.android.core.di.ScopeNames
-import ru.hh.android.features.first.di.FirstFeatureModule
-import toothpick.Toothpick
-import javax.inject.Inject
+import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class FirstFeatureFragment : Fragment(R.layout.fragment_feature_first) {
 
-    private companion object {
-        const val SCOPE_NAME = "first_feature"
-    }
+    private val viewModel by viewModels<FirstFeatureViewModel>()
 
-
-    @Inject
-    internal lateinit var viewModel: FirstFeatureViewModel
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        val scope = Toothpick.openScopes(ScopeNames.APP_SCOPE, SCOPE_NAME)
-        scope.installModules(
-            FirstFeatureModule()
-        )
-        scope.inject(this)
-
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

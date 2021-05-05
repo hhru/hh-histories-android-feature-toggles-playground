@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FeatureTogglesPlayground">
-        <activity android:name=".RootActivity">
+        <activity android:name=".ui.root.RootActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -6,13 +6,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jakewharton.processphoenix.ProcessPhoenix
+import dagger.hilt.android.lifecycle.HiltViewModel
 import ru.hh.android.core.experiments.models.ExperimentModel
 import ru.hh.android.debug_panel.domain.DebugExperimentsInteractor
-import toothpick.InjectConstructor
+import javax.inject.Inject
 
 
-@InjectConstructor
-internal class DebugPanelViewModel(
+@HiltViewModel
+internal class DebugPanelViewModel @Inject constructor(
     private val applicationContext: Context,
     private val debugExperimentsInteractor: DebugExperimentsInteractor,
 ) : ViewModel() {

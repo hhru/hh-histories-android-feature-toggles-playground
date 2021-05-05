@@ -5,6 +5,7 @@ import ru.hh.android.core.di.ScopeNames
 import ru.hh.android.core.experiments.di.ExperimentsModule
 import ru.hh.feature_toggles_playground.di.RootModule
 import ru.hh.ftplayground.BuildConfig
+import toothpick.Scope
 import toothpick.Toothpick
 import toothpick.configuration.Configuration
 

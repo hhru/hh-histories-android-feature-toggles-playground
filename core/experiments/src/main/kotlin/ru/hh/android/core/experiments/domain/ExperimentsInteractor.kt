@@ -7,7 +7,7 @@ import toothpick.InjectConstructor
 
 
 @InjectConstructor
-internal class ExperimentsInteractor(
+class ExperimentsInteractor(
     applicationContext: Context
 ) {
     private val experimentsPrefs: SharedPreferences by lazy {

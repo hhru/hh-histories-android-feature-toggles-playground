@@ -6,7 +6,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jakewharton.processphoenix.ProcessPhoenix
+import org.atteo.classindex.ClassIndex
+import ru.hh.android.core.experiments.models.Experiment
 import ru.hh.android.core.experiments.models.ExperimentModel
+import ru.hh.android.core.experiments.models.extensions.isUserAffected
 import ru.hh.android.debug_panel.domain.DebugExperimentsInteractor
 import toothpick.InjectConstructor
 
@@ -43,7 +46,18 @@ internal class DebugPanelViewModel(
     }
 
     private fun getAllExperiments(): List<ExperimentModel> {
-        TODO("How to collect all experiments across the codebase?")
+        return getIndexedExperiments().map { experiment ->
+            ExperimentModel(
+                key = experiment.key,
+                isUserAffected = experiment.isUserAffected()
+            )
+        }
+    }
+
+    private fun getIndexedExperiments(): List<Experiment> {
+        return ClassIndex.getSubclasses(Experiment::class.java).map { experimentClass ->
+            experimentClass.newInstance() as Experiment
+        }
     }
 
 }

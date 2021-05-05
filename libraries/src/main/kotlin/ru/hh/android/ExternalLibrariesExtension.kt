@@ -86,6 +86,7 @@ abstract class ExternalLibrariesExtension @Inject constructor(private val provid
 
     object DebugLibraries {
         const val processPhoenix = "com.jakewharton:process-phoenix:2.0.0"
+        const val classIndex = "org.atteo.classindex:classindex:3.4"
     }
 
     @Suppress("UnstableApiUsage")

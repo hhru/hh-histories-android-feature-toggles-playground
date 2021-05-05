@@ -6,9 +6,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jakewharton.processphoenix.ProcessPhoenix
+import ru.hh.android.core.experiments.models.Experiment
 import ru.hh.android.core.experiments.models.ExperimentModel
+import ru.hh.android.core.experiments.models.extensions.isUserAffected
 import ru.hh.android.debug_panel.domain.DebugExperimentsInteractor
 import toothpick.InjectConstructor
+import java.util.*
 
 
 @InjectConstructor
@@ -43,7 +46,14 @@ internal class DebugPanelViewModel(
     }
 
     private fun getAllExperiments(): List<ExperimentModel> {
-        TODO("How to collect all experiments across the codebase?")
+        // TODO [service-loader-problem] Another opportunity for merge conflicts
+        //   in META-INF/services/ru.hh.android.core.experiments.models.Experiment
+        return ServiceLoader.load(Experiment::class.java).map { experiment ->
+            ExperimentModel(
+                key = experiment.key,
+                isUserAffected = experiment.isUserAffected()
+            )
+        }
     }
 
 }

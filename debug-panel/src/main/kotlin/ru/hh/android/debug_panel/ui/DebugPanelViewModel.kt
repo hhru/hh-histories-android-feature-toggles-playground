@@ -6,7 +6,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jakewharton.processphoenix.ProcessPhoenix
+import org.reflections.Reflections
+import ru.hh.android.core.experiments.models.Experiment
 import ru.hh.android.core.experiments.models.ExperimentModel
+import ru.hh.android.core.experiments.models.extensions.isUserAffected
 import ru.hh.android.debug_panel.domain.DebugExperimentsInteractor
 import toothpick.InjectConstructor
 
@@ -43,7 +46,17 @@ internal class DebugPanelViewModel(
     }
 
     private fun getAllExperiments(): List<ExperimentModel> {
-        TODO("How to collect all experiments across the codebase?")
+        // TODO [reflections-problems] Throws 'org.reflections.ReflectionsException: Scanner SubTypesScanner was not configured'
+        val reflections = Reflections(applicationContext.packageCodePath)
+        val subtypes = reflections.getSubTypesOf(Experiment::class.java)
+
+        return subtypes.map { experimentClass ->
+            val experiment = experimentClass.newInstance()
+            ExperimentModel(
+                key = experiment.key,
+                isUserAffected = experiment.isUserAffected()
+            )
+        }
     }
 
 }

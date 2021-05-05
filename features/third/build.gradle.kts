@@ -19,5 +19,6 @@ dependencies {
 
     // Debug
     implementation(Libs.debug.classIndex)
+    kapt(Libs.debug.classIndex)
     // endregion
 }

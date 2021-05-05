@@ -75,5 +75,6 @@ dependencies {
     // Debug
     implementation(Libs.debug.processPhoenix)
     implementation(Libs.debug.classIndex)
+    kapt(Libs.debug.classIndex)
     // endregion
 }

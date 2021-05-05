@@ -12,6 +12,7 @@ import ru.hh.android.core.experiments.models.ExperimentModel
 import ru.hh.android.core.experiments.models.extensions.isUserAffected
 import ru.hh.android.debug_panel.domain.DebugExperimentsInteractor
 import toothpick.InjectConstructor
+import java.util.*
 
 
 @InjectConstructor
@@ -46,17 +47,11 @@ internal class DebugPanelViewModel(
     }
 
     private fun getAllExperiments(): List<ExperimentModel> {
-        return getIndexedExperiments().map { experiment ->
+        return ServiceLoader.load(Experiment::class.java).map { experiment ->
             ExperimentModel(
                 key = experiment.key,
                 isUserAffected = experiment.isUserAffected()
             )
-        }
-    }
-
-    private fun getIndexedExperiments(): List<Experiment> {
-        return ClassIndex.getSubclasses(Experiment::class.java).map { experimentClass ->
-            experimentClass.newInstance() as Experiment
         }
     }
 

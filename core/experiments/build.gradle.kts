@@ -14,6 +14,6 @@ dependencies {
     kapt(Libs.toothpick.compiler)
 
     // Debug
-    implementation(Libs.debug.classIndex)
+    compileOnly(Libs.debug.classIndex)
     kapt(Libs.debug.classIndex)
 }

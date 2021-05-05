@@ -1,7 +1,6 @@
 package ru.hh.android.core.experiments.di
 
-import ru.hh.android.core.experiments.ExperimentsConfig
-import ru.hh.android.core.experiments.ExperimentsConfigImpl
+import ru.hh.android.core.experiments.domain.ExperimentsInteractor
 import toothpick.config.Module
 import toothpick.ktp.binding.bind
 
@@ -9,7 +8,7 @@ import toothpick.ktp.binding.bind
 class ExperimentsModule : Module() {
 
     init {
-        bind<ExperimentsConfig>().toClass<ExperimentsConfigImpl>()
+        bind<ExperimentsInteractor>().singleton()
     }
 
 }

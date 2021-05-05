@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jakewharton.processphoenix.ProcessPhoenix
-import ru.hh.android.core.experiments.ExperimentsConfig
 import ru.hh.android.core.experiments.models.ExperimentModel
 import ru.hh.android.debug_panel.domain.DebugExperimentsInteractor
 import toothpick.InjectConstructor
@@ -16,7 +15,6 @@ import toothpick.InjectConstructor
 internal class DebugPanelViewModel(
     private val applicationContext: Context,
     private val debugExperimentsInteractor: DebugExperimentsInteractor,
-    private val experimentsConfig: ExperimentsConfig
 ) : ViewModel() {
 
     private val _experimentsSet = MutableLiveData<List<ExperimentModel>>(emptyList())
@@ -33,15 +31,19 @@ internal class DebugPanelViewModel(
         reloadExperimentsList()
     }
 
-    private fun reloadExperimentsList() {
-        _experimentsSet.postValue(experimentsConfig.getAllExperiments())
-    }
-
     fun restartApp(activity: Activity) {
         ProcessPhoenix.triggerRebirth(
             activity,
             applicationContext.packageManager.getLaunchIntentForPackage(applicationContext.packageName)
         )
+    }
+
+    private fun reloadExperimentsList() {
+        _experimentsSet.postValue(getAllExperiments())
+    }
+
+    private fun getAllExperiments(): List<ExperimentModel> {
+        TODO("How to collect all experiments across the codebase?")
     }
 
 }

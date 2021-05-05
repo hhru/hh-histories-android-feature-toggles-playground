@@ -51,7 +51,8 @@ abstract class ExternalLibrariesExtension @Inject constructor(private val provid
         private const val lifecycleVersion = "2.3.1"
 
         const val navigationComponentFragment = "androidx.navigation:navigation-fragment:$navigationComponentVersion"
-        const val navigationComponentFragmentKtx = "androidx.navigation:navigation-fragment-ktx:$navigationComponentVersion"
+        const val navigationComponentFragmentKtx =
+            "androidx.navigation:navigation-fragment-ktx:$navigationComponentVersion"
 
         const val recyclerView = "androidx.recyclerview:recyclerview:1.1.0"
         const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
@@ -86,6 +87,7 @@ abstract class ExternalLibrariesExtension @Inject constructor(private val provid
 
     object DebugLibraries {
         const val processPhoenix = "com.jakewharton:process-phoenix:2.0.0"
+        const val metainfServices = "org.kohsuke.metainf-services:metainf-services:1.1"
     }
 
     @Suppress("UnstableApiUsage")

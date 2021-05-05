@@ -16,5 +16,8 @@ dependencies {
     implementation(Libs.toothpick.core)
     implementation(Libs.toothpick.ktp)
     kapt(Libs.toothpick.compiler)
+
+    // Debug
+    compileOnly(Libs.debug.metainfServices)
     // endregion
 }

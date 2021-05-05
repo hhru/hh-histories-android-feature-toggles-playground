@@ -46,8 +46,6 @@ internal class DebugPanelViewModel(
     }
 
     private fun getAllExperiments(): List<ExperimentModel> {
-        // TODO [service-loader-problem] Another opportunity for merge conflicts
-        //   in META-INF/services/ru.hh.android.core.experiments.models.Experiment
         return ServiceLoader.load(Experiment::class.java).map { experiment ->
             ExperimentModel(
                 key = experiment.key,

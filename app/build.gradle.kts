@@ -3,6 +3,7 @@ import com.android.build.gradle.internal.dsl.SigningConfig
 plugins {
     id("convention.kotlin-android-app")
     kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -71,6 +72,10 @@ dependencies {
     implementation(Libs.toothpick.core)
     implementation(Libs.toothpick.ktp)
     kapt(Libs.toothpick.compiler)
+
+    // Hilt
+    implementation(Libs.jetpack.hiltAndroid)
+    kapt(Libs.jetpack.hiltCompiler)
 
     // Debug
     implementation(Libs.debug.processPhoenix)

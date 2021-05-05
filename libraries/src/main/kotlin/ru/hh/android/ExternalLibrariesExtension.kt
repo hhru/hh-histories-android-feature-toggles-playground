@@ -21,6 +21,7 @@ abstract class ExternalLibrariesExtension @Inject constructor(private val provid
 
     private val kotlinVersion = systemProperty("kotlinVersion").get()
     private val androidGradlePluginVersion = systemProperty("androidGradlePluginVersion").get()
+    private val hiltVersion = systemProperty("hiltVersion").get()
 
 
     val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
@@ -31,7 +32,9 @@ abstract class ExternalLibrariesExtension @Inject constructor(private val provid
 
 
     val androidX = AndroidXLibraries
-    val jetpack = JetpackLibraries
+    val jetpack = JetpackLibraries(
+        hiltVersion = hiltVersion
+    )
     val build = BuildLibraries
     val toothpick = ToothpickLibraries
     val test = TestsLibraries
@@ -46,16 +49,21 @@ abstract class ExternalLibrariesExtension @Inject constructor(private val provid
         const val materialComponents = "com.google.android.material:material:1.3.0"
     }
 
-    object JetpackLibraries {
-        private const val navigationComponentVersion = "2.3.5"
-        private const val lifecycleVersion = "2.3.1"
+    class JetpackLibraries(
+        hiltVersion: String
+    ) {
+        private val navigationComponentVersion = "2.3.5"
+        private val lifecycleVersion = "2.3.1"
 
-        const val navigationComponentFragment = "androidx.navigation:navigation-fragment:$navigationComponentVersion"
-        const val navigationComponentFragmentKtx = "androidx.navigation:navigation-fragment-ktx:$navigationComponentVersion"
+        val navigationComponentFragment = "androidx.navigation:navigation-fragment:$navigationComponentVersion"
+        val navigationComponentFragmentKtx = "androidx.navigation:navigation-fragment-ktx:$navigationComponentVersion"
 
-        const val recyclerView = "androidx.recyclerview:recyclerview:1.1.0"
-        const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
-        const val lifecycleLiveData = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+        val recyclerView = "androidx.recyclerview:recyclerview:1.1.0"
+        val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+        val lifecycleLiveData = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+
+        val hiltAndroid = "com.google.dagger:hilt-android:$hiltVersion"
+        val hiltCompiler = "com.google.dagger:hilt-compiler:$hiltVersion"
     }
 
     object BuildLibraries {

@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.dsl.SigningConfig
+
 plugins {
     id("convention.kotlin-android-app")
     kotlin("kapt")
@@ -24,6 +26,13 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             ))
+
+            signingConfig = SigningConfig("release").apply {
+                storeFile(rootProject.rootDir.resolve("debug_key.keystore"))
+                keyAlias("debug_key")
+                keyPassword("123456")
+                storePassword("123456")
+            }
         }
     }
 }

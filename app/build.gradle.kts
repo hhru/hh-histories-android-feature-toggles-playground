@@ -37,6 +37,72 @@ android {
     }
 }
 
+// TODO [classgraph-library-problems] This code returns empty scan_result file, because
+//  'compileDebugJavaWithJavac' task doesn't contains all classes of our multimodule app.
+afterEvaluate {
+    // Get some task references
+    val compileTask = this.tasks.findByName("compileDebugJavaWithJavac") as? JavaCompile
+    val mergeTask = this.tasks.findByName("mergeDebugResources") as? com.android.build.gradle.tasks.MergeResources
+
+    println("project: ${this.name}")
+
+    println("compileTask: $compileTask")
+    println("mergeTask: $mergeTask")
+
+    compileTask?.doLast {
+        val packageToScan = "ru.hh.ftplayground"
+        val annotationName = "ru.hh.android.core.experiments.models.ExperimentAnnotation"
+        val scanResultFilename = "scan_result.txt"
+
+        // Create a temporary raw resource directory for saving the scan result to
+        val scanResultDir = compileTask.temporaryDir.toString() + "/res/raw/"
+        File(scanResultDir).mkdirs()
+        val scanResultPath = scanResultDir + scanResultFilename
+
+        // Get location where .class files were compiled to
+        val classPackageRoot = compileTask.destinationDir
+
+        println("Scanning $classPackageRoot")
+        io.github.classgraph.ClassGraph()
+            // [Configure your ClassGraph instance here]
+            .overrideClasspath(classPackageRoot)
+            .acceptPackages(packageToScan)
+            .enableAllInfo()
+//            .verbose()
+            .scan()
+            .also { scanResult ->
+                // [Get the scan results you're interested in here]
+                val resultList = scanResult.getClassesWithAnnotation(annotationName)
+                // Write the results to the output file
+                val outputFile = File(scanResultPath)
+                val writer = outputFile.writer()
+                resultList.forEach { ci ->
+                    // Write name of annotated class to output file
+                    writer.write(ci.name)
+                }
+
+                println("Wrote scan result to " + outputFile + " ; size = " + outputFile.length())
+            }
+
+        // Run AAPT2 to convert the raw resource file into a .flat file
+        val flatFileOutputPrefix = mergeTask?.outputDir?.get()?.asFile?.absolutePath + "/"
+
+        val cmd = listOf(
+            "/Users/p.strelchenko/Library/Android/sdk/build-tools/30.0.3/aapt2",
+            "compile",
+            "-o",
+            flatFileOutputPrefix,
+            scanResultPath
+        )
+        println("Executing: " + cmd.joinToString(separator = " "))
+
+        project.exec {
+            this.commandLine(cmd)
+        }
+        println("Wrote compiled resource as a .flat file to $flatFileOutputPrefix")
+    }
+}
+
 dependencies {
     // Core
     implementation(project(":core:di"))

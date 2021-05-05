@@ -6,9 +6,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jakewharton.processphoenix.ProcessPhoenix
+import ru.hh.android.core.experiments.models.Experiment
 import ru.hh.android.core.experiments.models.ExperimentModel
+import ru.hh.android.core.experiments.models.extensions.isUserAffected
 import ru.hh.android.debug_panel.domain.DebugExperimentsInteractor
 import toothpick.InjectConstructor
+import java.io.BufferedReader
+import java.io.InputStreamReader
 
 
 @InjectConstructor
@@ -43,7 +47,36 @@ internal class DebugPanelViewModel(
     }
 
     private fun getAllExperiments(): List<ExperimentModel> {
-        TODO("How to collect all experiments across the codebase?")
+        return readExperimentsFromFlatFile().map { experiment ->
+            ExperimentModel(
+                key = experiment.key,
+                isUserAffected = experiment.isUserAffected()
+            )
+        }
+    }
+
+
+    // TODO [classgraph-library-problems] This code returns empty list
+    //  because 'scan_result' file is empty.
+    private fun readExperimentsFromFlatFile(): List<Experiment> {
+        val scanResultFileName = "scan_result"
+        val annotatedClassNames = mutableListOf<String>()
+
+        val rawResIdentifier = applicationContext.resources.getIdentifier(
+            scanResultFileName,
+            "raw",
+            applicationContext.packageName
+        )
+
+        BufferedReader(
+            InputStreamReader(
+                applicationContext.resources.openRawResource(rawResIdentifier)
+            )
+        ).forEachLine { line ->
+            annotatedClassNames += line
+        }
+
+        return annotatedClassNames.map { Class.forName(it).newInstance() as Experiment }
     }
 
 }

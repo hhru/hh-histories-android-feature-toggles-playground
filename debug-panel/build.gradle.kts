@@ -9,6 +9,12 @@ dependencies {
     implementation(project(":core:design-system"))
     implementation(project(":core:experiments"))
 
+    // Feature modules
+    // TODO [manual-problem] another opportunity for merge conflicts =/
+    implementation(project(":features:first"))
+    implementation(project(":features:second"))
+    implementation(project(":features:third"))
+
     // region External dependencies
     // AndroidX
     implementation(Libs.androidX.constraintLayout)

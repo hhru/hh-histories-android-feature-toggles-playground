@@ -19,3 +19,8 @@
 -keep class toothpick.** { *; }
 -keep @javax.inject.Singleton class *
 
+# Additional proguard rules
+# TODO [class-loader-dex-problems] You need to keep names of 'Experiment' classes
+#   to have the ability for collecting a list of all experiments
+#   across the codebase in minified builds.
+-keepnames class * implements ru.hh.android.core.experiments.models.Experiment

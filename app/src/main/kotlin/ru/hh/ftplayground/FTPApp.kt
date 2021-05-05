@@ -22,7 +22,7 @@ class FTPApp : Application() {
             .openScope(ScopeNames.APP_SCOPE)
             .getInstance(ExperimentsInteractor::class.java)
 
-        Experiments.init(interactor)
+        Experiments.init(this.packageCodePath, interactor)
     }
 
 }

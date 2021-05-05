@@ -75,5 +75,6 @@ dependencies {
     // Debug
     implementation(Libs.debug.processPhoenix)
     compileOnly(Libs.debug.metainfServices)
+    kapt(Libs.debug.metainfServices)
     // endregion
 }

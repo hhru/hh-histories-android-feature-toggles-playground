@@ -19,5 +19,6 @@ dependencies {
 
     // Debug
     compileOnly(Libs.debug.metainfServices)
+    kapt(Libs.debug.metainfServices)
     // endregion
 }

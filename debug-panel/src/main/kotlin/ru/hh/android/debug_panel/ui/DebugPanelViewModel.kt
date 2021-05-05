@@ -45,12 +45,14 @@ internal class DebugPanelViewModel(
     }
 
     private fun getAllExperiments(): List<ExperimentModel> {
-        return ExperimentsCollector().getAllExperiments().map { experiment ->
-            ExperimentModel(
-                key = experiment.key,
-                isUserAffected = experiment.isUserAffected()
-            )
-        }
+        return ExperimentsCollector().getAllExperiments()
+            .filter { it.key.isNotEmpty() }
+            .map { experiment ->
+                ExperimentModel(
+                    key = experiment.key,
+                    isUserAffected = experiment.isUserAffected()
+                )
+            }
     }
 
 }
